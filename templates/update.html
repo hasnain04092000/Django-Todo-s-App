@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update todo's</title>
+    <style>
+        .container{
+            width: 600px;
+            padding: 10px;
+            background-color: #009688;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+        }
+        .container .label{
+            font-size: 2rem;
+            color: indigo;
+            padding: 10px;
+            text-align: center;
+        }
+        .container h2{
+            font-size: 2rem;
+            color: #ffc107;
+            margin: 0px 0px 20px 15px;
+        }
+        .container form{
+            margin: 0 0 20px 15px;
+        }
+        label{
+            color: white;
+            font-size: 1.3rem;
+        }
+        input#id_title{
+            font-size: 1.3rem;
+            background: none;
+            outline: none;
+            border: none;
+            border-bottom: 1px dotted white;
+            color: white;
+            margin:  0 20px;
+        }
+        input#id_complete{
+            padding: 10px;
+        }
+        .btn{
+            background:none;
+            color: white;
+            outline: none;
+            border: 1px solid crimson;
+            padding: 5px 10px;
+        }
+        .btn:hover{
+            background-color: crimson;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="label">
+            <h1>Todo's Apps :)</h1>
+        </div>
+        <h2>Update Task</h2>
+
+        <form method="POST" action="">
+            {% csrf_token %}
+
+            {{form}}
+            <input class="btn" type="submit" name="update_task" value="Update">
+        </form>
+    </div>
+    
+</body>
+</html>

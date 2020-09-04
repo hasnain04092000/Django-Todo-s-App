@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo's Apps</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            width: 600px;
+            padding: 10px;
+            background-color: #009688;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+        }
+        .container .label{
+            font-size: 2rem;
+            color: indigo;
+            padding: 10px;
+            text-align: center;
+        }
+        .container .input-task input{
+            width: 80%;
+            height: 40px;
+            position: relative;
+            left: 50%;
+            transform: translate(-50%);
+            margin: 10px;
+            padding: 0 10px;
+            border: none;
+            outline: none;
+        }
+        
+        .container .btn{
+            padding-bottom: 50px;
+        }
+        .container .btn input{
+            width: 84%;
+            height: 30px;
+            position: relative;
+            left: 60%;
+            transform: translate(-60%);
+            border: 2px solid crimson;
+            background: none;
+            cursor: pointer;
+            color: white;
+            font-size: 1rem;
+            letter-spacing: .5rem;
+            outline: none;
+        }
+        .container .btn input:hover{
+            background-color: crimson;
+        }
+        .container .item{
+            margin: 10px 10px;
+            padding: 10px;
+            background: #dce775;
+        }
+        .item a{
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+        }
+        .item a.update{
+            background-color: green;
+            padding: 5px;
+        }
+        .item a.delete{
+            background-color: red;
+            padding: 5px;
+        }
+        .item .text{
+            display: inline;
+            margin-left: 15px;
+            letter-spacing: .2rem;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="/" method="POST" >
+            {% csrf_token %}
+            <div class="label">
+                <h1>Todo's Apps :)</h1>
+            </div>
+            <div class="input-task">
+                {{form.title}}
+            </div>
+            <div class="btn">
+                <input type="submit" value="Add This">
+            </div>
+
+        </form>
+        {% for task in tasks %}
+        <div class="item">
+            <a class="update" href="{% url 'update' task.id %}">Update</a>
+            <a class="delete" href="{% url 'delete' task.id %}">Delete</a>
+            <div class="text">
+                {% if task.complete == True %}
+                <strike>{{task.title}}</strike>
+                {% else %}
+                <span>{{task.title}}</span>
+                {% endif %}
+            </div>
+            
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
